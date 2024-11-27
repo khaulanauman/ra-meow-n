@@ -1,1 +1,1 @@
-amazon game-challenge using amazon q and aws simplify
+amazon game-challenge using amazon q and aws amplify
