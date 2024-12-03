@@ -8,6 +8,7 @@ const BackgroundAudio: React.FC = () => {
   useEffect(() => {
     // Create audio instance once when component mounts
     audioRef.current = new Audio(sound);
+    audioRef.current.loop = true;
   }, []);
 
   const toggleAudio = () => {
@@ -28,7 +29,7 @@ const BackgroundAudio: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className=" border-2 border-white flex flex-col items-center">
       <button
         onClick={toggleAudio}
         className="mt-4 transform transition-transform duration-300 hover:scale-110"
