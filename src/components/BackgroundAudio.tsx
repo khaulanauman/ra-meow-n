@@ -29,7 +29,7 @@ const BackgroundAudio: React.FC = () => {
   };
 
   return (
-    <div className=" border-2 border-white flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <button
         onClick={toggleAudio}
         className="mt-4 transform transition-transform duration-300 hover:scale-110"
@@ -37,8 +37,8 @@ const BackgroundAudio: React.FC = () => {
       >
         <svg
           fill="#ffb22e"
-          width="90px"
-          height="90px"
+          width="80px"
+          height="80px"
           viewBox="0 0 256 256"
           id="Flat"
           xmlns="http://www.w3.org/2000/svg"
