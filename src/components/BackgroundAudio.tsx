@@ -29,10 +29,10 @@ const BackgroundAudio: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="mt-10 rounded-md flex flex-col items-center bg-white">
       <button
         onClick={toggleAudio}
-        className="mt-4 transform transition-transform duration-300 hover:scale-110"
+        className="mt-4transform transition-transform duration-300 hover:scale-110"
         aria-label={isPlaying ? "Pause Audio" : "Play Audio"}
       >
         <svg
