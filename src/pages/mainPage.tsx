@@ -3,7 +3,7 @@ import lockIcon from "../assets/lock.svg";
 import doorSlam from "../assets/doorSlam.mp3";
 import click from "../assets/click.mp3";
 export default function MainPage() {
-  const playHoverSound = (sound: any, volume: number) => {
+  const playClickSound = (sound: any, volume: number) => {
     const audio = new Audio(sound);
     audio.volume = volume; // Adjust volume as needed (0.0 to 1.0)
     audio.play();
@@ -35,7 +35,7 @@ export default function MainPage() {
         <div className="buttons flex justify-around items-center">
           <button
             onClick={() => {
-              playHoverSound(click, 1);
+              playClickSound(click, 1);
             }}
             className="level flex flex-col rounded-md border-4 border-yellow-500 
         bg-white transform transition-transform duration-200 
@@ -54,7 +54,7 @@ export default function MainPage() {
           </button>
           <button
             onClick={() => {
-              playHoverSound(doorSlam, 0.1);
+              playClickSound(doorSlam, 0.1);
             }}
             className="level flex flex-col rounded-md border-4 border-yellow-500 
         bg-white transform transition-transform duration-200 
@@ -73,7 +73,7 @@ export default function MainPage() {
           </button>
           <button
             onClick={() => {
-              playHoverSound(doorSlam, 0.1);
+              playClickSound(doorSlam, 0.1);
             }}
             className="level flex flex-col rounded-md border-4 border-yellow-500 
         bg-white transform transition-transform duration-200 
