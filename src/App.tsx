@@ -1,9 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/mainPage";
+import GamePage from "./pages/gamePage";
+
 function App() {
   return (
-    <div className="min-h-screen">
-      <MainPage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/game" element={<GamePage />} />
+      </Routes>
+    </Router>
   );
 }
 

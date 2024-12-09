@@ -1,13 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import BackgroundAudio from "../components/BackgroundAudio";
 import lockIcon from "../assets/lock.svg";
 import doorSlam from "../assets/doorSlam.mp3";
 import click from "../assets/click.mp3";
-export default function MainPage() {
+
+export default function mainPage() {
+  const navigate = useNavigate();
+
+  const handleLevelOneClick = async () => {
+    playClickSound(click, 1);
+    setTimeout(() => {
+      navigate("/game");
+    }, 1000);
+  };
+
   const playClickSound = (sound: any, volume: number) => {
     const audio = new Audio(sound);
-    audio.volume = volume; // Adjust volume as needed (0.0 to 1.0)
+    audio.volume = volume;
     audio.play();
   };
+
   return (
     <div
       className="flex flex-col items-center min-h-screen lg:bg-[url('/images/main-bg-large.png')] 
@@ -34,9 +46,7 @@ export default function MainPage() {
         </div>
         <div className="buttons flex justify-between items-center">
           <button
-            onClick={() => {
-              playClickSound(click, 1);
-            }}
+            onClick={handleLevelOneClick}
             className="level flex flex-col rounded-md border-4 border-yellow-500 
         bg-white transform transition-transform duration-200 
         hover:scale-105 justify-center items-center"
