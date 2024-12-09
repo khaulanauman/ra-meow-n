@@ -10,14 +10,14 @@ export default function MainPage() {
   };
   return (
     <div
-      className="flex flex-col min-h-screen lg:bg-[url('/images/main-bg-large.png')] 
+      className="flex flex-col items-center min-h-screen lg:bg-[url('/images/main-bg-large.png')] 
       xl:bg-[url('/images/main-bg.png')] bg-[url('/images/main-bg-small.png')] 
       bg-cover bg-center bg-no-repeat"
     >
-      <div className="audio-opt flex flex-col max-w-48 max-h-36">
+      <div className="audio-opt mt-5 bg-white rounded-md flex flex-col items-center">
         <BackgroundAudio />
         <p
-          className="xl:text-s text-s rounded-md font-bold text-center text-white 
+          className="xl:text-s text-s p-3 font-bold text-center text-white 
           bg-yellow-500 font-pixelify tracking-wider"
         >
           Press to enjoy some cozy ambience
@@ -32,7 +32,7 @@ export default function MainPage() {
             rameown
           </h1>
         </div>
-        <div className="buttons flex justify-around items-center">
+        <div className="buttons flex justify-between items-center">
           <button
             onClick={() => {
               playClickSound(click, 1);
