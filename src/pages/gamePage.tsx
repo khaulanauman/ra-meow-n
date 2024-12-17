@@ -126,9 +126,6 @@ export default function GamePage() {
               Press to enjoy some cozy ambience
             </p>
           </div>
-          <div className="instructions bg-white rounded-md flex flex-col items-center">
-            <p>{getInstruction()}</p>
-          </div>
           <div className="board flex flex-col min-h-96 min-w-96 justify-center items-center lg:bg-[url('/images/board.png')] bg-cover bg-center bg-no-repeat">
             {gameState !== "empty" && (
               <img
@@ -138,6 +135,9 @@ export default function GamePage() {
                 alt="cooking"
               />
             )}
+          </div>
+          <div className="instructions bg-white rounded-md flex flex-col items-center">
+            <p>{getInstruction()}</p>
           </div>
         </div>
 
