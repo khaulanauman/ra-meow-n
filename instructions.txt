@@ -1,0 +1,66 @@
+instructions :
+1. drag the empty pan to the board
+2. click on the pan to get the water boiling
+3. waters boiling (5 seconds)
+4. add ramen
+5.ramen cooking (5 seconds)
+6.drag the bowl to add ramen in it
+7.add spices
+8.add egg
+7. you did it!
+
+code:
+1. if board empty show instruction "Put the empty pan on stove to get started"
+2. if empty pot is clicked make it draggable-> if brought close to board then place on board in middle
+3. if empty pot on board show instruction "click on the pot to get the water boiling"
+4. if click on empty pot on board change to boiling-pot
+5. if boiling pot on board show instruction "now add the ramen to the bowl"
+6.if ramen is clicked make it draggable-> if brought close to boiling pot on board change to ramen pot
+7. if ramen pot on board show instruction "cnow add the ramen to bowl by dragging the bowl to the board"
+8.if bowl is clicked make it draggable-> if brought close to ramen pot on board change to ramen bowl
+9.if ramen bowl on board show instruction "add spices"
+10.if spices is clicked make it draggable-> if brought close to ramen bowl on board do nothing (just chnage the state to ramen spices)
+11.if ramen spices on board show instruction "add an egg because NUTRTION?!"
+12.if egg is clicked make it draggable-> if brought close to ramen spices on board change to ramen final
+13. if ramen final on board show instruction "you did it champ!"
+
+
+Create the necessary images:
+
+pot-empty.png
+
+pot-boiling.png
+
+pot-ramen.png
+
+bowl-ramen.png
+
+bowl-spices.png
+
+bowl-final.png
+
+The code uses:
+
+Framer Motion for drag and drop functionality
+
+Game state management to control the flow
+
+Proximity detection to determine when items are near the board
+
+Conditional rendering based on game state
+
+Click handlers for specific interactions
+
+Key features:
+
+Items are only draggable when it's their turn
+
+The instruction text updates based on the current game state
+
+Images change based on the game state
+
+Drag and drop detection uses the board's boundaries
+
+Sound effects play on successful interactions
+
+
