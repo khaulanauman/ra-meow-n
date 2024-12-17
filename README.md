@@ -1,4 +1,4 @@
-amazon game-challenge using amazon q and aws amplify
+**amazon game-challenge using amazon q and aws amplify**
 TO DO:
 - fix layout for board utensils and spices
 - change ramen images
