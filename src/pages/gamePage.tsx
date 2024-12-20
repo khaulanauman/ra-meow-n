@@ -78,13 +78,16 @@ export default function GamePage() {
 
   return (
     <div
-      className="flex items-center justify-around min-h-screen lg:bg-[url('/images/main-bg-large.png')] 
+      className="flex items-center justify-around lg:bg-[url('/images/main-bg-large.png')] 
     xl:bg-[url('/images/game-bg.jpg')] bg-[url('/images/main-bg-small.png')] 
     bg-cover bg-center bg-no-repeat"
     >
-      <div className="flex items-center justify-around min-h-screen">
+      <div
+        className="flex items-center justify-between border-2 border-red-500"
+        style={{ minWidth: "100vw" }}
+      >
         <div
-          className="utensils border-2 flex flex-col justify-center items-center border-red-500 lg:bg-[url('/images/marble.png')] 
+          className="utensils border-2 flex flex-col justify-center items-center lg:bg-[url('/images/marble.png')] 
     xl:bg-[url('/images/marble.png')] bg-[url('/images/marble.png')] 
     bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 p-4 rounded-md"
         >
@@ -119,7 +122,10 @@ export default function GamePage() {
           </motion.button>
         </div>
 
-        <div className="main m-auto items-stretch justify-center min-h-screen flex flex-col border-2 border-red-500">
+        <div
+          className="main items-center border-2 border-red-600 flex flex-col"
+          style={{ minHeight: "100vh", justifyContent: "space-around" }}
+        >
           <div className="audio-opt bg-white rounded-md flex flex-col items-center">
             <BackgroundAudio />
             <p className="xl:text-s text-s p-2 font-bold text-center text-white bg-yellow-500 font-pixelify tracking-wider">
@@ -136,12 +142,17 @@ export default function GamePage() {
               />
             )}
           </div>
-          <div className="instructions bg-white rounded-md flex flex-col items-center">
-            <p>{getInstruction()}</p>
+          <div className="instructions  rounded-md flex flex-col items-center">
+            <p
+              className="bg-white"
+              style={{ minHeight: "full", minWidth: "full" }}
+            >
+              {getInstruction()}
+            </p>
           </div>
         </div>
 
-        <div className="ingredients border-2 flex flex-col justify-center items-center border-red-500 lg:bg-[url('/images/marble.png')] xl:bg-[url('/images/marble.png')] bg-[url('/images/marble.png')] bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 p-4 rounded-md">
+        <div className="ingredients border-2 flex flex-col justify-center items-center lg:bg-[url('/images/marble.png')] xl:bg-[url('/images/marble.png')] bg-[url('/images/marble.png')] bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 p-4 rounded-md">
           {/* Ramen */}
           <motion.button
             onClick={() => handleRamenClick()}
