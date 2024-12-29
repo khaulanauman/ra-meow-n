@@ -1,6 +1,7 @@
 import BackgroundAudio from "../components/BackgroundAudio";
 import { useState, useRef } from "react";
 import click from "../assets/click.mp3";
+import boiling from "../assets/boiling-water.mp3";
 import { motion, useAnimation } from "framer-motion";
 import { GameState } from "../types";
 
@@ -21,12 +22,15 @@ export default function GamePage() {
   };
 
   const handleRamenClick = () => {
-    playClickSound(click, 1);
-    if (gameState === "boiling_pot") {
+    if (gameState === "boiling_pot_ready") {
       setGameState("ramen_pot");
+      playClickSound(boiling, 1);
+      setTimeout(() => {
+        // After 5 seconds, show the instruction for adding ramen
+        setGameState("ramen_pot_ready");
+      }, 5000);
     }
   };
-
   const handleBowlClick = () => {
     playClickSound(click, 1);
     if (gameState === "ramen_pot") {
@@ -55,9 +59,13 @@ export default function GamePage() {
       case "empty_pot":
         return "Click on the pot to get the water boiling";
       case "boiling_pot":
-        return "Now add the ramen to the bowl";
+        return "Wait 5 seconds";
+      case "boiling_pot_ready":
+        return "Now add the ramen to the pot";
       case "ramen_pot":
         return "Now add the ramen to bowl by clicking the bowl";
+      case "ramen_pot_ready":
+        return "Wait for the ramen to boil";
       case "ramen_bowl":
         return "Add spices";
       case "ramen_spices":
@@ -71,8 +79,13 @@ export default function GamePage() {
 
   const handlePotClick = () => {
     if (gameState === "empty_pot") {
-      playClickSound(click, 1);
-      setGameState("boiling_pot");
+      setGameState("boiling_pot"); // First change the state to show boiling pot
+      playClickSound(boiling, 1); // Play boiling sound after state change
+
+      setTimeout(() => {
+        // After 5 seconds, show the instruction for adding ramen
+        setGameState("boiling_pot_ready");
+      }, 5000);
     }
   };
 
@@ -111,12 +124,12 @@ export default function GamePage() {
           <motion.button
             onClick={() => handleBowlClick()}
             className={`bowl cursor-pointer transition-transform ${
-              gameState === "ramen_pot"
+              gameState === "ramen_pot_ready"
                 ? "hover:scale-105"
                 : "opacity-50 cursor-not-allowed"
             }`}
-            whileHover={gameState === "ramen_pot" ? { scale: 1.05 } : {}}
-            whileTap={gameState === "ramen_pot" ? { scale: 0.95 } : {}}
+            whileHover={gameState === "ramen_pot_ready" ? { scale: 1.05 } : {}}
+            whileTap={gameState === "ramen_pot_ready" ? { scale: 0.95 } : {}}
           >
             <img className="w-48 h-28" src="/images/bowl.png" alt="bowl" />
           </motion.button>
@@ -145,7 +158,7 @@ export default function GamePage() {
           <div className="instructions  rounded-md flex flex-col items-center">
             <p
               className="bg-white"
-              style={{ minHeight: "full", minWidth: "full" }}
+              style={{ minHeight: "full", minWidth: "full " }}
             >
               {getInstruction()}
             </p>
@@ -157,12 +170,14 @@ export default function GamePage() {
           <motion.button
             onClick={() => handleRamenClick()}
             className={`ramen cursor-pointer transition-transform ${
-              gameState === "boiling_pot"
+              gameState === "boiling_pot_ready"
                 ? "hover:scale-105"
                 : "opacity-50 cursor-not-allowed"
             }`}
-            whileHover={gameState === "boiling_pot" ? { scale: 1.05 } : {}}
-            whileTap={gameState === "boiling_pot" ? { scale: 0.95 } : {}}
+            whileHover={
+              gameState === "boiling_pot_ready" ? { scale: 1.05 } : {}
+            }
+            whileTap={gameState === "boiling_pot_ready" ? { scale: 0.95 } : {}}
           >
             <img className="w-44 h-56" src="/images/ramen.png" alt="ramen" />
           </motion.button>
@@ -206,7 +221,11 @@ const getBoardImage = (gameState: GameState) => {
       return "pot-empty.png";
     case "boiling_pot":
       return "pot-boiling.png";
+    case "boiling_pot_ready":
+      return "pot-boiling.png";
     case "ramen_pot":
+      return "pot-ramen.png";
+    case "ramen_pot_ready":
       return "pot-ramen.png";
     case "ramen_bowl":
       return "bowl-ramen.png";
