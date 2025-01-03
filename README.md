@@ -6,6 +6,6 @@
 - add egg sound effect
 - add timer
 - add play again button
-- show you did pop up in the end
+- show you did pop up in the end<br />
 <br />NEW STUFF I LEARNED:
 - generic types in typescript (https://www.youtube.com/watch?v=EcCTIExsqmI&t=400s) used in types.ts and gamePage.tsx
