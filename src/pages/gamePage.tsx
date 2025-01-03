@@ -1,6 +1,7 @@
 import BackgroundAudio from "../components/BackgroundAudio";
 import { useState, useRef } from "react";
 import click from "../assets/click.mp3";
+import spices from "../assets/spices.mp3";
 import boiling from "../assets/boiling-water.mp3";
 import { motion, useAnimation } from "framer-motion";
 import { GameState } from "../types";
@@ -33,15 +34,19 @@ export default function GamePage() {
   };
   const handleBowlClick = () => {
     playClickSound(click, 1);
-    if (gameState === "ramen_pot") {
+    if (gameState === "ramen_pot_ready") {
       setGameState("ramen_bowl");
     }
   };
 
   const handleSpicesClick = () => {
-    playClickSound(click, 1);
+    playClickSound(spices, 1);
     if (gameState === "ramen_bowl") {
-      setGameState("ramen_spices");
+      playClickSound(spices, 1); // Play boiling sound after state change
+      setTimeout(() => {
+        // After 5 seconds, show the instruction for adding ramen
+        setGameState("ramen_spices");
+      }, 3000);
     }
   };
 
@@ -52,6 +57,16 @@ export default function GamePage() {
     }
   };
 
+  const handlePotClick = () => {
+    if (gameState === "empty_pot") {
+      setGameState("boiling_pot"); // First change the state to show boiling pot
+      playClickSound(boiling, 1); // Play boiling sound after state change
+      setTimeout(() => {
+        // After 5 seconds, show the instruction for adding ramen
+        setGameState("boiling_pot_ready");
+      }, 5000);
+    }
+  };
   const getInstruction = () => {
     switch (gameState) {
       case "empty":
@@ -63,9 +78,9 @@ export default function GamePage() {
       case "boiling_pot_ready":
         return "Now add the ramen to the pot";
       case "ramen_pot":
-        return "Now add the ramen to bowl by clicking the bowl";
-      case "ramen_pot_ready":
         return "Wait for the ramen to boil";
+      case "ramen_pot_ready":
+        return "Now add the ramen to bowl by clicking the bowl";
       case "ramen_bowl":
         return "Add spices";
       case "ramen_spices":
@@ -77,18 +92,6 @@ export default function GamePage() {
     }
   };
 
-  const handlePotClick = () => {
-    if (gameState === "empty_pot") {
-      setGameState("boiling_pot"); // First change the state to show boiling pot
-      playClickSound(boiling, 1); // Play boiling sound after state change
-
-      setTimeout(() => {
-        // After 5 seconds, show the instruction for adding ramen
-        setGameState("boiling_pot_ready");
-      }, 5000);
-    }
-  };
-
   return (
     <div
       className="flex items-center justify-around lg:bg-[url('/images/main-bg-large.png')] 
@@ -96,13 +99,13 @@ export default function GamePage() {
     bg-cover bg-center bg-no-repeat"
     >
       <div
-        className="flex items-center justify-between border-2 border-red-500"
+        className="flex items-center justify-between "
         style={{ minWidth: "100vw" }}
       >
         <div
           className="utensils border-2 flex flex-col justify-center items-center lg:bg-[url('/images/marble.png')] 
     xl:bg-[url('/images/marble.png')] bg-[url('/images/marble.png')] 
-    bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 p-4 rounded-md"
+    bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 px-4 rounded-md"
         >
           {/* Empty Pot */}
           {gameState === "empty" && (
@@ -136,8 +139,8 @@ export default function GamePage() {
         </div>
 
         <div
-          className="main items-center border-2 border-red-600 flex flex-col"
-          style={{ minHeight: "100vh", justifyContent: "space-around" }}
+          className="main  flex flex-col"
+          style={{ minHeight: "100vh", justifyContent: "space-between" }}
         >
           <div className="audio-opt bg-white rounded-md flex flex-col items-center">
             <BackgroundAudio />
@@ -155,17 +158,17 @@ export default function GamePage() {
               />
             )}
           </div>
-          <div className="instructions  rounded-md flex flex-col items-center">
+          <div className="instructions rounded-md w-full min-h-full">
             <p
-              className="bg-white"
-              style={{ minHeight: "full", minWidth: "full " }}
+              className="bg-white text-center flex items-center justify-center"
+              style={{ minHeight: "20vh", minWidth: "full " }}
             >
               {getInstruction()}
             </p>
           </div>
         </div>
 
-        <div className="ingredients border-2 flex flex-col justify-center items-center lg:bg-[url('/images/marble.png')] xl:bg-[url('/images/marble.png')] bg-[url('/images/marble.png')] bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 p-4 rounded-md">
+        <div className="ingredients border-2 flex flex-col justify-center items-center lg:bg-[url('/images/marble.png')] xl:bg-[url('/images/marble.png')] bg-[url('/images/marble.png')] bg-cover bg-center bg-no-repeat min-h-screen bg-red-100 px-4 rounded-md">
           {/* Ramen */}
           <motion.button
             onClick={() => handleRamenClick()}
