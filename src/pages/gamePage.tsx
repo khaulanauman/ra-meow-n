@@ -1,9 +1,9 @@
 import BackgroundAudio from "../components/BackgroundAudio";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import click from "../assets/click.mp3";
 import spices from "../assets/spices.mp3";
 import boiling from "../assets/boiling-water.mp3";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { GameState } from "../types";
 
 export default function GamePage() {
