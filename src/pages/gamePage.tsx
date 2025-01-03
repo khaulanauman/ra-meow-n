@@ -160,7 +160,7 @@ export default function GamePage() {
           </div>
           <div className="instructions rounded-md w-full min-h-full">
             <p
-              className="bg-white text-center flex items-center justify-center"
+              className="bg-white text-center text-yellow-700 font-pixelify tracking-wide font-semibold flex items-center justify-center"
               style={{ minHeight: "20vh", minWidth: "full " }}
             >
               {getInstruction()}
