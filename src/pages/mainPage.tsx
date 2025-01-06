@@ -32,7 +32,7 @@ export default function mainPage() {
           className="xl:text-s text-s p-3 font-bold text-center text-white 
           bg-yellow-500 font-pixelify tracking-wider"
         >
-          Press to enjoy some cozy ambience
+          Click the paw enjoy some cozy ambience
         </p>
       </div>
       <div className="main flex flex-col flex-grow justify-around">

@@ -12,7 +12,7 @@ export default function GamePage() {
     audio.volume = volume;
     audio.play();
   };
-
+  const [showMukbang, setShowMukbang] = useState(false);
   const [gameState, setGameState] = useState<GameState>("empty");
 
   const handlePanClick = () => {
@@ -66,6 +66,14 @@ export default function GamePage() {
         setGameState("boiling_pot_ready");
       }, 5000);
     }
+  };
+  const handlePlayAgain = () => {
+    setGameState("empty");
+    setShowMukbang(false);
+  };
+
+  const handleWatchMukbang = () => {
+    setShowMukbang(true);
   };
   const getInstruction = () => {
     switch (gameState) {
@@ -145,11 +153,11 @@ export default function GamePage() {
           <div className="audio-opt bg-white rounded-md flex flex-col items-center">
             <BackgroundAudio />
             <p className="xl:text-s text-s p-2 font-bold text-center text-white bg-yellow-500 font-pixelify tracking-wider">
-              Press to enjoy some cozy ambience
+              Click the paw to enjoy some cozy ambience
             </p>
           </div>
           <div className="board flex flex-col min-h-96 min-w-96 justify-center items-center lg:bg-[url('/images/board.png')] bg-cover bg-center bg-no-repeat">
-            {gameState !== "empty" && (
+            {gameState !== "empty" && !showMukbang && (
               <img
                 onClick={handlePotClick}
                 className="w-52 h-46 cursor-pointer hover:scale-105 transition-transform"
@@ -157,10 +165,44 @@ export default function GamePage() {
                 alt="cooking"
               />
             )}
+            {gameState === "ramen_final" && !showMukbang && (
+              <div className="flex flex-col gap-4 mt-4">
+                <motion.button
+                  onClick={handlePlayAgain}
+                  className="bg-yellow-500 text-white px-6 py-2 rounded-lg font-pixelify"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Play Again
+                </motion.button>
+                <motion.button
+                  onClick={handleWatchMukbang}
+                  className="bg-red-500 text-white px-6 py-2 rounded-lg font-pixelify"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Watch Mukbang
+                </motion.button>
+              </div>
+            )}
+
+            {showMukbang && (
+              <div className="w-full h-full">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/2ua4bG9VhhQ?si=5s9OCv_jVy07ilX-&amp;start=281  "
+                  title="Ramen Mukbang"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
           </div>
           <div className="instructions rounded-md w-full min-h-full">
             <p
-              className="bg-white text-center text-yellow-700 font-pixelify tracking-wide font-semibold flex items-center justify-center"
+              className="bg-white text-center text-yellow-700 text-lg tracking-wide font-semibold flex items-center justify-center"
               style={{ minHeight: "20vh", minWidth: "full " }}
             >
               {getInstruction()}
