@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import BackgroundAudio from "../components/BackgroundAudio";
 import lockIcon from "../assets/lock.svg";
+import ramen from "../assets/ramen.svg";
 import doorSlam from "../assets/doorSlam.mp3";
 import click from "../assets/click.mp3";
 
@@ -52,7 +53,7 @@ export default function mainPage() {
         hover:scale-105 justify-center items-center"
           >
             <img
-              src="/ramen.svg"
+              src={ramen}
               className="border-4 border-white lg:w-24 lg:h-24 xl:w-28 xl:h-28"
             ></img>
             <p
