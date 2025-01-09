@@ -53,7 +53,10 @@ export default function GamePage() {
   const handleEggClick = () => {
     playClickSound(click, 1);
     if (gameState === "ramen_spices") {
-      setGameState("ramen_final");
+      setGameState("ramen_final_cooking"); // Add an intermediate state
+      setTimeout(() => {
+        setGameState("ramen_final"); // Change to final state after delay
+      }, 3000);
     }
   };
 
@@ -73,6 +76,7 @@ export default function GamePage() {
   };
 
   const handleWatchMukbang = () => {
+    playClickSound(click, 1);
     setShowMukbang(true);
   };
   const getInstruction = () => {
@@ -82,19 +86,21 @@ export default function GamePage() {
       case "empty_pot":
         return "Click on the pot to get the water boiling";
       case "boiling_pot":
-        return "Wait 5 seconds";
+        return "Wait 5 seconds 🕜";
       case "boiling_pot_ready":
         return "Now add the ramen to the pot";
       case "ramen_pot":
-        return "Wait for the ramen to boil";
+        return "Wait for the ramen to boil 🕜";
       case "ramen_pot_ready":
         return "Now add the ramen to bowl by clicking the bowl";
       case "ramen_bowl":
         return "Add spices";
       case "ramen_spices":
         return "Add an egg because NUTRITION?!";
-      case "ramen_final":
+      case "ramen_final_cooking":
         return "You did it champ!";
+      case "ramen_final":
+        return "Hope you had fun!";
       default:
         return "";
     }
@@ -169,7 +175,7 @@ export default function GamePage() {
               <div className="flex flex-col gap-4 mt-4">
                 <motion.button
                   onClick={handlePlayAgain}
-                  className="bg-yellow-500 text-white px-6 py-2 rounded-lg font-pixelify"
+                  className="bg-white text-yellow-600 px-6 py-2 rounded-lg font-pixelify"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -276,6 +282,8 @@ const getBoardImage = (gameState: GameState) => {
       return "bowl-ramen.png";
     case "ramen_spices":
       return "bowl-spices.png";
+    case "ramen_final_cooking":
+      return "bowl-final.png";
     case "ramen_final":
       return "bowl-final.png";
     default:

@@ -7,6 +7,7 @@ export type GameState =
   | 'ramen_pot_ready'
   | 'ramen_bowl'
   | 'ramen_spices'
+  | 'ramen_final_cooking'
   | 'ramen_final';
 
 export interface Position {
